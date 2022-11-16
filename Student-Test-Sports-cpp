@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+class student{
+    protected:
+    int roll_number;
+    public:
+    void get_number(int a){
+        roll_number=a;
+    }
+    void put_number(void){
+        cout<<"Roll No : "<<roll_number<<"\n";
+    }
+};
+class test : virtual public student{
+    protected:
+    float sub1,sub2,sub3,sub4,sub5;
+    public:
+    void get_marks(float x, float y, float z, float a, float b){
+        sub1=x;sub2=y;sub3=z;sub4=a;sub5=b;
+    }
+    void put_marks(void){
+        cout<<"Marks obtained are --> "<<"\n"<<"Maths III \t\t(out of 100)= "<<sub1<<"\n"<<"Science \t\t(out of 100)= "<<sub2<<"\n"<<"Computer Science\t(out of 100)= "<<sub3<<"\n"<<"Physics \t\t(out of 100)= "<<sub4<<"\n"<<"Chemistry \t\t(out of 100)= "<<sub5<<"\n";
+    }
+};
+class sports : public virtual student{
+    protected:
+    float score;
+    public:
+    void get_score(float s){
+        score=s;
+    }
+    void put_score(void){
+        cout<<"Sports score \t\t(out of 10)= "<<score<<"\n\n";
+    }
+};
+class result : public test, public sports{
+    float total;
+    public:
+    void display(void);
+};
+void result :: display(void){
+    total=sub1+sub2+sub3+sub4+sub5+score;
+    put_number();
+    put_marks();
+    put_score();
+    cout<<"Total Score : "<<total<<"\n";
+}
+
+int main(){
+    result student_1;
+    int roll,m1,m2,m3,m4,m5,s1;
+    cout<<"Enter the Roll no. of Student : ";
+    cin>>roll;
+    cout<<"Enter the Marks in Maths III : ";
+    cin>>m1;
+    cout<<"Enter the Marks in Science : ";
+    cin>>m2;
+    cout<<"Enter the Marks in Computer Science : ";
+    cin>>m3;
+    cout<<"Enter the Marks in Physics : ";
+    cin>>m4;
+    cout<<"Enter the Marks in Chemistry : ";
+    cin>>m5;
+    cout<<"Enter the Marks Obtained in Sports : ";
+    cin>>s1;
+    cout<<"\n------------------------------------------\n";
+    student_1.get_number(roll);
+    student_1.get_marks(m1,m2,m3,m4,m5);
+    student_1.get_score(s1);
+    student_1.display();
+    return 0;
+}
